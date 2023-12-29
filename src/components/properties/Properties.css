@@ -1,0 +1,27 @@
+.properties {
+  max-width: 1440px;
+  background: #f4f9fc;
+  margin: 0 auto;
+}
+
+.property {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid silver;
+}
+
+.property__brand-name {
+  flex: 0 0 150px;
+  color: rgb(75, 75, 75);
+}
+
+.property__brand-name-phone {
+  flex: 0 1 50%;
+  text-align: center;
+  color: rgb(75, 75, 75);
+}
+
+.diactivate {
+  border: 1px solid #000;
+}
