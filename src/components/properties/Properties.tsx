@@ -141,7 +141,7 @@ const PropertyFalse: React.FC<PropertyProps> = ({ title, property }) => {
       {phonesPreview &&
         phonesPreview.map((el) => {
           return (
-            <div className="property__brand-name-phone">
+            <div key={el.id} className="property__brand-name-phone">
               {el[property] === true ? (
                 <img src={trueImg} alt="" />
               ) : el[property] === false ? (

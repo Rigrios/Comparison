@@ -21,6 +21,8 @@ export interface IPhones {
 export interface IState {
   phones: IPhones[];
   phonesPreview: IPhones[];
+  phonesRemainder: IPhones[];
+  phonesRemainderPreview: IPhones[];
   quantityShow: number;
   showDifferences: boolean;
 }
@@ -119,6 +121,8 @@ const initialState: IState = {
     },
   ],
   phonesPreview: [],
+  phonesRemainder: [],
+  phonesRemainderPreview: [],
   quantityShow: 3,
   showDifferences: false,
 };
@@ -136,10 +140,37 @@ export const phoneReducer = createSlice({
     setShowDifferences: (state) => {
       state.showDifferences = !state.showDifferences;
     },
+    setRemainder: (state, action: PayloadAction<IPhones[]>) => {
+      state.phonesRemainder = action.payload;
+    },
+    setPhonesRemainderPreview: (state) => {
+      state.phonesRemainderPreview = state.phonesRemainder;
+    },
+    setPhonesRemainderPreviewNewElement: (
+      state,
+      action: PayloadAction<IPhones[]>
+    ) => {
+      state.phonesRemainderPreview = action.payload;
+    },
+    setChangePhones: (state, action: PayloadAction<number[]>) => {
+      const arr = action.payload.map((el) => Number(el));
+      const [indexA, indexB] = arr;
+      [state.phonesRemainderPreview[indexB], state.phonesPreview[indexA]] = [
+        state.phonesPreview[indexA],
+        state.phonesRemainderPreview[indexB],
+      ];
+    },
   },
 });
 
-export const { setQuantityShow, setPhonesPreview, setShowDifferences } =
-  phoneReducer.actions;
+export const {
+  setQuantityShow,
+  setPhonesPreview,
+  setShowDifferences,
+  setRemainder,
+  setPhonesRemainderPreview,
+  setPhonesRemainderPreviewNewElement,
+  setChangePhones,
+} = phoneReducer.actions;
 
 export default phoneReducer.reducer;
